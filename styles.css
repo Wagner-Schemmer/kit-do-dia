@@ -36,5 +36,21 @@ input:focus,textarea:focus{outline:3px solid #fdba74}
 .unit{flex:none;align-self:center;font-weight:800;font-size:.8rem;color:var(--mut)}
 .result{font-weight:900;color:var(--acc2);margin:6px 0 0}
 textarea{width:100%;resize:vertical}
+.greet{font-weight:900;color:var(--acc);font-size:1.1rem;margin:0}
+select{border:2px solid var(--ink);border-radius:14px;padding:12px;font-family:inherit;font-weight:800;background:#fffdf7}
+.settings{border:2px dashed var(--ink);border-radius:14px;padding:12px 16px;margin:12px 0}
+.settings summary{cursor:pointer;font-weight:800}
+.settings label{display:grid;gap:4px;font-size:.8rem;font-weight:800}
+.settings label.check{display:flex;gap:8px;align-items:center}
+.settings input[type=number]{width:100%}
+.settings input[type=checkbox]{width:20px;height:20px;accent-color:var(--acc)}
+.stats3{display:flex;gap:12px;justify-content:center;margin:14px 0;flex-wrap:wrap}
+.stats3 div{background:#fffdf7;border:2px solid var(--ink);border-radius:14px;padding:8px 22px;text-align:center}
+.stats3 strong{display:block;font-size:1.3rem}.stats3 span{font-size:.75rem;color:var(--mut)}
+.tasks li .prio{flex:none;font-size:.8rem}
+.btn.small{padding:8px 16px;font-size:.85rem}
+.mut.left{text-align:left}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-weight:800;padding:12px 24px;border-radius:99px;opacity:0;transition:.3s;z-index:50;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 footer{text-align:center;color:var(--mut);padding:26px 0 44px;font-size:.85rem}
 @media(max-width:640px){nav{display:none}.grid2{grid-template-columns:1fr}.row{flex-direction:column}.unit{align-self:flex-start}}

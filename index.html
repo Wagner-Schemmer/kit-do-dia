@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kit do Dia — Pomodoro, tarefas, conversores e notas</title>
-<meta name="description" content="Pomodoro com ciclos, lista de tarefas, conversores de moeda/medidas/temperatura e bloco de notas. Tudo salvo no navegador.">
+<meta name="description" content="Pomodoro configurável, tarefas com prioridades, conversores com cotação ao vivo e bloco de notas. Produtividade grátis, sem conta, tudo no navegador.">
+<meta property="og:title" content="Kit do Dia — Seu dia organizado">
+<meta property="og:description" content="Pomodoro, tarefas, conversores e notas. Grátis, sem conta, sem app pesado.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#fffbeb">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Kit do Dia","applicationCategory":"ProductivityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0"}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -18,8 +27,9 @@
 
 <main class="wrap">
   <section class="hero">
+    <p id="greet" class="greet">☀️ Bom dia!</p>
     <h1>Seu dia <em>organizado</em> em 4 ferramentas</h1>
-    <p>Foco, tarefas, contas e ideias — sem conta, sem app pesado. Tudo salvo no seu navegador.</p>
+    <p><span id="todayLine">—</span> · <span class="pill">🔥 <span id="streakTop">0</span> dias de foco</span></p>
   </section>
 
   <section id="pomodoro" class="card">
@@ -31,18 +41,43 @@
       <button id="resetBtn" class="btn">↺ Resetar</button>
     </div>
     <div class="modes">
-      <button data-m="25" class="chip active">Foco 25</button>
-      <button data-m="5" class="chip">Pausa 5</button>
-      <button data-m="15" class="chip">Pausa 15</button>
+      <button data-m="focus" class="chip active">Foco</button>
+      <button data-m="short" class="chip">Pausa curta</button>
+      <button data-m="long" class="chip">Pausa longa</button>
     </div>
-    <p class="mut">✔ Concluídos hoje: <strong id="doneCount">0</strong></p>
+    <details class="settings">
+      <summary>⚙️ Ajustar tempos e avisos</summary>
+      <div class="grid2">
+        <label>Foco (min) <input id="setFocus" type="number" min="5" max="120" value="25"></label>
+        <label>Pausa curta (min) <input id="setShort" type="number" min="1" max="30" value="5"></label>
+        <label>Pausa longa (min) <input id="setLong" type="number" min="5" max="60" value="15"></label>
+        <label class="check"><input id="setAuto" type="checkbox" checked> trocar sozinho foco ⇄ pausa</label>
+        <label class="check"><input id="setSound" type="checkbox" checked> som ao terminar</label>
+        <label class="check"><input id="setNotif" type="checkbox"> notificação do navegador</label>
+      </div>
+    </details>
+    <div class="stats3">
+      <div><strong id="focusToday">0min</strong><span>foco hoje</span></div>
+      <div><strong id="doneCount">0</strong><span>pomodoros</span></div>
+      <div><strong id="streak">0 🔥</strong><span>sequência</span></div>
+    </div>
+    <p class="mut">Dica: 4 focos → pausa longa automática.</p>
   </section>
 
   <section id="tarefas" class="card">
     <h2>✅ Tarefas <span id="taskCount" class="pill">0 pendentes</span></h2>
     <div class="row">
       <input id="taskIn" type="text" placeholder="Ex: revisar lista de exercícios…" maxlength="120">
+      <select id="taskPrio" title="Prioridade">
+        <option value="2">🔴 Alta</option>
+        <option value="1" selected>🟡 Normal</option>
+        <option value="0">🟢 Baixa</option>
+      </select>
       <button id="taskAdd" class="btn primary">＋</button>
+    </div>
+    <div class="row">
+      <input id="taskSearch" type="text" placeholder="🔎 Buscar tarefa…" maxlength="60">
+      <button id="clearDone" class="btn">🧹 Limpar feitas</button>
     </div>
     <div class="modes" id="filters">
       <button data-f="all" class="chip active">Todas</button>
@@ -57,9 +92,12 @@
     <div class="grid2">
       <div class="conv">
         <h3>Moeda <small>(cotação editável)</small></h3>
-        <div class="row"><input id="brl" type="number" placeholder="R$"><span class="unit">BRL → USD</span></div>
-        <div class="row"><input id="usdRate" type="number" step="0.01" value="5.40"><span class="unit">cotação</span></div>
-        <p class="result" id="brlOut">= US$ 0,00</p>
+        <div class="row"><input id="brl" type="number" placeholder="R$"><span class="unit">BRL → USD/EUR</span></div>
+        <div class="row"><input id="usdRate" type="number" step="0.01" value="5.40"><span class="unit">US$</span></div>
+        <div class="row"><input id="eurRate" type="number" step="0.01" value="5.85"><span class="unit">€</span></div>
+        <p class="result" id="brlOut">= US$ 0,00 · € 0,00</p>
+        <button id="rateBtn" class="btn small">⟳ Atualizar cotação online</button>
+        <p class="mut left" id="rateNote">Cotação manual — atualize quando quiser.</p>
       </div>
       <div class="conv">
         <h3>Temperatura</h3>
@@ -80,8 +118,9 @@
   </section>
 
   <section id="notas" class="card">
-    <h2>📝 Notas rápidas <span class="pill">auto-salva</span></h2>
+    <h2>📝 Notas rápidas <span class="pill" id="saveState">auto-salva</span></h2>
     <textarea id="notes" rows="7" placeholder="Despeje as ideias aqui… elas ficam salvas sozinhas."></textarea>
+    <p class="mut left"><span id="wordCount">0 palavras</span></p>
     <div class="btns">
       <button id="dlNotes" class="btn">⬇ Baixar .txt</button>
       <button id="clearNotes" class="btn danger">🗑 Limpar</button>
@@ -90,6 +129,7 @@
 </main>
 
 <footer><div class="wrap"><p><strong>Kit do Dia</strong> — projeto de Wagner Schemmer. Seus dados nunca saem do navegador.</p></div></footer>
+<div id="toast"></div>
 <script src="script.js"></script>
 </body>
 </html>
