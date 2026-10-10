@@ -1,5 +1,9 @@
 # ☀️ Kit do Dia
 
+[![Live](https://img.shields.io/badge/demo-ao_vivo-4ade80?style=for-the-badge&logo=vercel&logoColor=white)](https://kit-do-dia.vercel.app)
+![JS](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![PWA](https://img.shields.io/badge/PWA-instalável-5A0FC8?style=flat-square&logo=pwa&logoColor=white)
+
 Pomodoro com ciclos, lista de tarefas, conversores e bloco de notas. Tudo salvo no navegador (`localStorage`).
 
 ## Ferramentas
