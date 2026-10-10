@@ -15,3 +15,18 @@ Pomodoro com ciclos, lista de tarefas, conversores e bloco de notas. Tudo salvo 
 
 ## Rodar
 Go Live no VSCode ou `python3 -m http.server` na pasta. Sem build, sem dependências.
+
+## Estrutura
+```
+kit-do-dia/
+├── index.html      # markup + seções (pomodoro, tarefas, conversores, notas)
+├── styles.css      # tema claro PRO
+├── script.js       # ciclos, prioridades, cotação online, auto-save
+├── manifest.json   # PWA instalável
+└── api/            # health check p/ monitoramento
+```
+
+## Personalizar
+1. Tempos do pomodoro e ciclos em `script.js`
+2. Moedas e unidades dos conversores em `script.js`
+3. Deploy: conectar o repo na Vercel (zero config)
