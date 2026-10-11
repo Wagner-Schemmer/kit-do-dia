@@ -46,10 +46,6 @@ Na cozinha: `index.html` · `styles.css` · `script.js` · `manifest.json` (PWA 
   <img src="https://skillicons.dev/icons?i=html,css,js&theme=light" alt="HTML CSS JS" />
 </div>
 
-## Registro do dia (star history)
-
-<a href="https://www.star-history.com/#Wagner-Schemmer/kit-do-dia&Date"><img alt="Star History" src="https://api.star-history.com/svg?repos=Wagner-Schemmer/kit-do-dia&type=Date" /></a>
-
 ## Personalizar o cardápio
 
 Tempos e ciclos do pomodoro e moedas dos conversores moram em `script.js`. Deploy é conectar o repo na Vercel.
