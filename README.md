@@ -18,6 +18,14 @@
 - [ ] **17:00 — Notas** 🌙
   Descarregue o dia: auto-save, contador de palavras, download `.txt`.
 
+## Fotos do dia 📸
+
+**08:00 — a mesa posta (pomodoro + tarefas):**
+<a href="https://kit-do-dia.vercel.app"><img src="docs/kit-pomodoro.png" alt="pomodoro e tarefas" /></a>
+
+**10:30 — a gaveta de ferramentas (conversores + notas):**
+<a href="https://kit-do-dia.vercel.app"><img src="docs/kit-conversores.png" alt="conversores e notas" /></a>
+
 ## Onde fica tudo
 
 Na sua máquina, em `localStorage`. Fechou o navegador, continua lá. Trocou de aparelho, começa do zero — por design, não por bug.
@@ -31,6 +39,16 @@ cd kit-do-dia && python3 -m http.server
 ```
 
 Na cozinha: `index.html` · `styles.css` · `script.js` · `manifest.json` (PWA — instale e use offline).
+
+## Despensa (stack)
+
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=html,css,js&theme=light" alt="HTML CSS JS" />
+</div>
+
+## Registro do dia (star history)
+
+<a href="https://www.star-history.com/#Wagner-Schemmer/kit-do-dia&Date"><img alt="Star History" src="https://api.star-history.com/svg?repos=Wagner-Schemmer/kit-do-dia&type=Date" /></a>
 
 ## Personalizar o cardápio
 
